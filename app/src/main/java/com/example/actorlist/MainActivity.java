@@ -2,8 +2,8 @@ package com.example.actorlist;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.actorlist.dummy.DummyContent;
+import android.util.Log;
+import android.widget.Toast;
 
 /*
     ActorList Application
@@ -22,6 +22,8 @@ import com.example.actorlist.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements ActorListFragment.OnListFragmentInteractionListener{
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements ActorListFragment
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+    public void onListFragmentInteraction(ActorEntry item) {
+        Log.d(TAG, "onListFragmentInteraction() called. (CLICK)");
+        Toast.makeText(this,item.name,Toast.LENGTH_LONG).show();
     }
 }
