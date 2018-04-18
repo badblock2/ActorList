@@ -1,5 +1,9 @@
 package com.example.actorlist;
 
+import android.net.Uri;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +24,7 @@ import android.widget.Toast;
     4.UI Polishing
  */
 
-public class MainActivity extends AppCompatActivity implements ActorListFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ActorListFragment.OnListFragmentInteractionListener, ActorDetailFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -30,9 +34,31 @@ public class MainActivity extends AppCompatActivity implements ActorListFragment
         setContentView(R.layout.activity_main);
     }
 
+
+    public void showDetailDialog(ActorEntry item){
+        Log.d(TAG,"showDetailDialog() called.");
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if(prev!=null){
+            transaction.remove(prev);
+        }
+        transaction.addToBackStack(null);
+        DialogFragment dialog = ActorDetailFragment.newInstance(item);
+        dialog.show(transaction,"dialog");
+    }
+
+
     @Override
     public void onListFragmentInteraction(ActorEntry item) {
         Log.d(TAG, "onListFragmentInteraction() called. (CLICK)");
-        Toast.makeText(this,item.name,Toast.LENGTH_LONG).show();
+
+        showDetailDialog(item);
+    }
+
+    @Override
+    public void onDetailFragmentInteraction(Uri uri) {
+        Log.d(TAG, "onDetailFragmentInteraction() called. (CLICK)");
+
     }
 }

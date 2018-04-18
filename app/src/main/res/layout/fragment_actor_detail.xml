@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/full_screen_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:padding="16dp"
+    tools:context=".ActorDetailFragment"
+    android:clickable="true"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorHeaderBackgroundTransparent"
+        >
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/photo"
+            android:layout_width="@dimen/detail_photo_width"
+            android:layout_height="@dimen/detail_photo_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            tools:background="@drawable/female_001" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorBodyBackgroundTransparent"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="NAME : " />
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/ActorDetailText"
+                    tools:text="Jolly" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="ID : " />
+
+                <TextView
+                    android:id="@+id/id"
+                    style="@style/ActorDetailText"
+                    tools:text="Jolly" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="GENDER : " />
+
+                <TextView
+                    android:id="@+id/gender"
+                    style="@style/ActorDetailText"
+                    tools:text="Female" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="EMAIL : " />
+
+                <TextView
+                    android:id="@+id/email"
+                    style="@style/ActorDetailText"
+                    tools:text="badblock@gmail.com" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="ADDRESS : " />
+
+                <TextView
+                    android:id="@+id/address"
+                    style="@style/ActorDetailText"
+                    tools:text="XXXXX-XXXX-XXXXX" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="PHONE(MOBILE) : " />
+
+                <TextView
+                    android:id="@+id/mobile"
+                    style="@style/ActorDetailText"
+                    tools:text="010-2222-2222" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="PHONE(HOME) : " />
+
+                <TextView
+                    android:id="@+id/home"
+                    style="@style/ActorDetailText"
+                    tools:text="08-02-1234-3455" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ActorDetailTextLabel"
+                    android:text="PHONE(OFFICE) : " />
+
+                <TextView
+                    android:id="@+id/office"
+                    style="@style/ActorDetailText"
+                    tools:text="082-02-1234-1234" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
