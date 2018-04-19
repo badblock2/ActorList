@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ActorListFragment extends Fragment implements LoaderManager.LoaderCallbacks<String> {
+public class ActorListFragment extends Fragment implements LoaderManager.LoaderCallbacks<String>, SwipeRefreshLayout.OnRefreshListener{
     private static final String TAG = ActorListFragment.class.getSimpleName();
 
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -36,6 +37,9 @@ public class ActorListFragment extends Fragment implements LoaderManager.LoaderC
 
     private RecyclerView mRecyclerView;
     private OnListFragmentInteractionListener mListener;
+
+    private SwipeRefreshLayout mSwipeLayout;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -76,9 +80,11 @@ public class ActorListFragment extends Fragment implements LoaderManager.LoaderC
         View view = inflater.inflate(R.layout.fragment_actor_list, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
+        mSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mSwipeLayout.setOnRefreshListener(this);
 
         // Set the adapter
-        if (mRecyclerView instanceof RecyclerView) {
+        if (mRecyclerView!=null) {
             Context context = view.getContext();
 
             Log.d(TAG,"RecyclerView.setLayoutManager");
@@ -165,6 +171,7 @@ public class ActorListFragment extends Fragment implements LoaderManager.LoaderC
             Log.e(TAG,"Request call failed");
         }
 
+        if(mSwipeLayout!=null) mSwipeLayout.setRefreshing(false);
     }
 
     @Override
@@ -172,6 +179,12 @@ public class ActorListFragment extends Fragment implements LoaderManager.LoaderC
         Log.d(TAG,"onLoaderReset() called.");
     }
 
+    @Override
+    public void onRefresh() {
+        Log.d(TAG,"onRefresh() called.");
+
+        getLoaderManager().restartLoader(0,null,this);
+    }
 
     /**
      * This interface must be implemented by activities that contain this
