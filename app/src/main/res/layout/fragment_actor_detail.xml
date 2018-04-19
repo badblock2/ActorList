@@ -29,6 +29,7 @@
             android:layout_margin="16dp"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
+            android:background="@drawable/round_foreground"
             tools:background="@drawable/female_001" />
     </FrameLayout>
 

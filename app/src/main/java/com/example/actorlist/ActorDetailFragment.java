@@ -104,6 +104,8 @@ public class ActorDetailFragment extends DialogFragment {
             return;
         }
 
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().getWindow().setWindowAnimations(R.style.dialog_animation_fade);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
