@@ -22,6 +22,9 @@ import android.widget.Toast;
     3.Actor 상세 화면 구현
 
     4.UI Polishing
+        - Swipe Refresh
+        - RecyclerView Styling & Simple Transition Animation
+        - Actor Detail View Styling & Simple Transition Animation
  */
 
 public class MainActivity extends AppCompatActivity implements ActorListFragment.OnListFragmentInteractionListener, ActorDetailFragment.OnFragmentInteractionListener{
