@@ -1,6 +1,7 @@
 package com.example.actorlist;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.actorlist.databinding.FragmentActorDetailBinding;
 
 import org.w3c.dom.Text;
 
@@ -36,6 +39,8 @@ public class ActorDetailFragment extends DialogFragment {
     private ActorEntry mActor;
 
     private OnFragmentInteractionListener mListener;
+
+    private FragmentActorDetailBinding mBindingView;
 
     public ActorDetailFragment() {
         // Required empty public constructor
@@ -69,31 +74,30 @@ public class ActorDetailFragment extends DialogFragment {
             mActor = (ActorEntry) getArguments().getSerializable(ARG_PARAM1);
         }
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG,"onCreateView() called");
+
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_actor_detail, container, false);
+        //View view = inflater.inflate(R.layout.fragment_actor_detail,container,false);
 
-        ImageView imageView = view.findViewById(R.id.photo);
-        imageView.setImageResource(mActor.photo);
-        imageView.setClipToOutline(true);
+        mBindingView = DataBindingUtil.inflate(inflater,R.layout.fragment_actor_detail,container,false);
 
-        ((TextView)view.findViewById(R.id.name)).setText(mActor.name);
-        ((TextView)view.findViewById(R.id.id)).setText(mActor.id);
-        ((TextView)view.findViewById(R.id.gender)).setText(mActor.gender);
-        ((TextView)view.findViewById(R.id.email)).setText(mActor.email);
-        ((TextView)view.findViewById(R.id.address)).setText(mActor.address);
-        ((TextView)view.findViewById(R.id.mobile)).setText(mActor.mobile);
-        ((TextView)view.findViewById(R.id.home)).setText(mActor.home);
-        ((TextView)view.findViewById(R.id.office)).setText(mActor.office);
+        mBindingView.photo.setImageResource(mActor.photo);
+        mBindingView.photo.setClipToOutline(true);
+        mBindingView.name.setText(mActor.name);
+        mBindingView.id.setText(mActor.id);
+        mBindingView.gender.setText(mActor.gender);
+        mBindingView.email.setText(mActor.email);
+        mBindingView.address.setText(mActor.address);
+        mBindingView.mobile.setText(mActor.mobile);
+        mBindingView.home.setText(mActor.home);
+        mBindingView.office.setText(mActor.office);
 
-
-        return view;
+        return mBindingView.getRoot();
     }
 
     @Override
