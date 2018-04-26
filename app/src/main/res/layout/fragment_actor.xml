@@ -1,120 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="@drawable/list_background"
-    android:stateListAnimator="@drawable/list_animator">
-
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/photo"
-        android:layout_width="@dimen/list_photo_width"
-        android:layout_height="@dimen/list_photo_height"
-        android:layout_gravity="center_vertical"
-        android:scaleType="centerInside"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/round_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/female_002" />
-
-    <TextView
-        android:id="@+id/name"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools" >
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintStart_toEndOf="@+id/photo"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Angellina Jolly" />
+        android:layout_margin="4dp"
+        android:background="@drawable/list_background"
+        android:stateListAnimator="@drawable/list_animator">
 
-    <TextView
-        android:id="@+id/id"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:gravity="center_vertical"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintBaseline_toBaselineOf="@+id/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="25321" />
-
-    <TextView
-        android:id="@+id/gender"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:gravity="center_vertical"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintBaseline_toBaselineOf="@+id/name"
-        app:layout_constraintStart_toEndOf="@+id/name"
-        tools:text="Female" />
-
-    <TextView
-        android:id="@+id/mobile"
-        style="@style/TextAppearance.AppCompat.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:textAppearance="?attr/textAppearanceListItem"
-        app:layout_constraintStart_toEndOf="@+id/photo"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        tools:text="*081)1012345678" />
-
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/detail_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@+id/photo"
-        app:layout_constraintTop_toBottomOf="@+id/mobile"
-        android:visibility="gone">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/photo"
+            android:layout_width="@dimen/list_photo_width"
+            android:layout_height="@dimen/list_photo_height"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/round_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/female_002" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/name"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintStart_toEndOf="@+id/photo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Angellina Jolly" />
+
+        <TextView
+            android:id="@+id/id"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="25321" />
+
+        <TextView
+            android:id="@+id/gender"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name"
+            app:layout_constraintStart_toEndOf="@+id/name"
+            tools:text="Female" />
+
+        <TextView
+            android:id="@+id/mobile"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:textAppearance="?attr/textAppearanceListItem"
-            tools:text="badblock@gmail.com" />
+            app:layout_constraintStart_toEndOf="@+id/photo"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="*081)1012345678" />
 
-        <TextView
-            android:id="@+id/address"
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/detail_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/photo"
+            app:layout_constraintTop_toBottomOf="@+id/mobile"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
+            <TextView
+                android:id="@+id/email"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                tools:text="badblock@gmail.com" />
 
-        <TextView
-            android:id="@+id/office"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
+
+            <TextView
+                android:id="@+id/office"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                tools:text="xxxx-xxxxx-xxxxx-xxxxxx" />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.constraint.ConstraintLayout>
+</layout>

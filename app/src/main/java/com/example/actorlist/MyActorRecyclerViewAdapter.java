@@ -1,5 +1,6 @@
 package com.example.actorlist;
 
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.transition.ChangeBounds;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.actorlist.ActorListFragment.OnListFragmentInteractionListener;
+import com.example.actorlist.databinding.FragmentActorBinding;
 
 import java.util.List;
 
@@ -49,11 +51,11 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
         Log.d(TAG,"onViewAttachedFromWindow() ViewHolder(" + position + ")");
 
         if(position == mExpandedPosition) {
-            holder.mDetailLayout.setVisibility(View.VISIBLE);
+            holder.binding.detailLayout.setVisibility(View.VISIBLE);
             holder.itemView.setActivated(true);
             Log.d(TAG,"Selection ON ViewHolder (" + position +")");
         }else{
-            holder.mDetailLayout.setVisibility(View.GONE);
+            holder.binding.detailLayout.setVisibility(View.GONE);
             holder.itemView.setActivated(false);
             Log.d(TAG,"Selection OFF ViewHolder (" + position +")");
         }
@@ -84,33 +86,29 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "Create new ViewHolder. viewType:" + viewType);
 
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_actor, parent, false);
-        return new ViewHolder(view);
+        //View view = LayoutInflater.from(parent.getContext())
+        //        .inflate(R.layout.fragment_actor, parent, false);
+        //return new ViewHolder(view);
+        FragmentActorBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                                R.layout.fragment_actor,parent,false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.d(TAG,"Bind ViewHolder (" + position + ")");
 
-        holder.mItem = mValues.get(position);
+        FragmentActorBinding bindingView;
+        bindingView = DataBindingUtil.bind(holder.itemView);
 
-        holder.mPhoto.setBackgroundResource(mValues.get(position).photo);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mNameView.setText(mValues.get(position).name);
-        holder.mGenderView.setText(mValues.get(position).gender);
-        holder.mEmailView.setText(mValues.get(position).email);
-        holder.mMobileView.setText(mValues.get(position).mobile);
-        holder.mAddressView.setText(mValues.get(position).address);
-        holder.mHomeView.setText(mValues.get(position).home);
-        holder.mOfficeView.setText(mValues.get(position).office);
+        holder.bind(mValues.get(position));
 
         if(position == mExpandedPosition) {
-            holder.mDetailLayout.setVisibility(View.VISIBLE);
+            holder.binding.detailLayout.setVisibility(View.VISIBLE);
             holder.itemView.setActivated(true);
             Log.d(TAG,"Selection ON ViewHolder (" + position +")");
         }else{
-            holder.mDetailLayout.setVisibility(View.GONE);
+            holder.binding.detailLayout.setVisibility(View.GONE);
             holder.itemView.setActivated(false);
             Log.d(TAG,"Selection OFF ViewHolder (" + position +")");
         }
@@ -166,7 +164,7 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
                     return false;
                 }
 
-                shouldExpand = viewHolder.mDetailLayout.getVisibility() == View.GONE;
+                shouldExpand = viewHolder.binding.detailLayout.getVisibility() == View.GONE;
 
                 ChangeBounds transition = new ChangeBounds();
                 transition.setDuration(150);
@@ -175,11 +173,11 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
                 viewHolder.itemView.setActivated(shouldExpand);
 
                 if (shouldExpand) {
-                    viewHolder.mDetailLayout.setVisibility(View.VISIBLE);
+                    viewHolder.binding.detailLayout.setVisibility(View.VISIBLE);
                     expanded = true;
                     Log.d(TAG,"Selection ON ViewHolder (" + position +")");
                 }else{
-                    viewHolder.mDetailLayout.setVisibility(View.GONE);
+                    viewHolder.binding.detailLayout.setVisibility(View.GONE);
                     Log.d(TAG,"Selection OFF ViewHolder (" + position +")");
                 }
 
@@ -192,7 +190,7 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
             @Override
             public boolean onLongClick(View v) {
                 if (null != mListener) {
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.item);
                     Log.d(TAG,"Long Click ViewHolder (" + position + ")");
                     return true;
                 }
@@ -207,41 +205,32 @@ public class MyActorRecyclerViewAdapter extends RecyclerView.Adapter<MyActorRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ActorEntry mItem;
+        public ActorEntry item;
+        public FragmentActorBinding binding;
 
-        public final ImageView mPhoto;
-        public final TextView mIdView;
-        public final TextView mNameView;
-        public final TextView mGenderView;
-        public final TextView mMobileView;
+        public ViewHolder(FragmentActorBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
 
-        public final ViewGroup mDetailLayout;
-        public final TextView mEmailView;
-        public final TextView mAddressView;
-        public final TextView mHomeView;
-        public final TextView mOfficeView;
+        public void bind(ActorEntry item){
+            binding.id.setText(item.id);
+            binding.photo.setBackgroundResource(item.photo);
+            binding.photo.setClipToOutline(true);
+            binding.name.setText(item.name);
+            binding.gender.setText(item.gender);
+            binding.email.setText(item.email);
+            binding.address.setText(item.address);
+            binding.mobile.setText(item.mobile);
+            binding.home.setText(item.home);
+            binding.office.setText(item.office);
 
-        public ViewHolder(View view) {
-            super(view);
-
-            mPhoto = (ImageView) view.findViewById(R.id.photo);
-            mPhoto.setClipToOutline(true);
-
-            mNameView = (TextView) view.findViewById(R.id.name);
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mGenderView = (TextView) view.findViewById(R.id.gender);
-            mMobileView = (TextView) view.findViewById(R.id.mobile);
-
-            mDetailLayout = (ViewGroup) view.findViewById(R.id.detail_layout);
-            mEmailView = (TextView) view.findViewById(R.id.email);
-            mAddressView = (TextView) view.findViewById(R.id.address);
-            mHomeView = (TextView) view.findViewById(R.id.home);
-            mOfficeView = (TextView) view.findViewById(R.id.office);
+            this.item = item;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mNameView.getText() + "'";
+            return super.toString() + " '" + binding.name.getText() + "'";
         }
     }
 }
